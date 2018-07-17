@@ -1,9 +1,15 @@
+// @flow
 import React from 'react';
 import ActorItem from '../ActorItem.jsx'; // used for actors as well
 import Config from '../../config.json';
 import { uniqueId } from '../../utils.js';
 
-const ShowCredits = props => {
+type Props = {
+  cast: Array<any>,
+  crew: Array<any>
+};
+
+const ShowCredits = (props:Props) => {
   console.log(props);
 
   const cast = props.cast;

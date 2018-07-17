@@ -13,7 +13,24 @@ import {
   toggleList
 } from '../../utils.js';
 
-class Actor extends Component {
+type State = {
+  //   data[0]:{
+  //   },
+  //   data[1]:{
+  //   }
+  //   data[2]:{
+  //   }
+};
+
+type Props = {
+  location: {
+    state: {
+      id: number
+    }
+  }
+};
+
+class Actor extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log('Actor');
@@ -52,6 +69,7 @@ class Actor extends Component {
 
   render() {
     if (this.state.data.length) {
+      console.log(this.state.data);
       // 3 arrays here
       // 1: actor info
       // 2: actor credits

@@ -1,6 +1,12 @@
+//@flow
+
 import React from 'react';
 
-const Rating = props => {
+type Props = {
+  score: number
+};
+
+const Rating = (props: Props) => {
   const { score } = props;
   var avgScore = Math.round(score * 10);
   var avgScoreColour =

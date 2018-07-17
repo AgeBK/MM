@@ -1,25 +1,28 @@
+// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import Config from '../config.json';
 import { uniqueId } from '../utils.js';
 
-const ActorItem = props => {
-  const {
-    character,
-    id,
-    img,
-    css,
-    name,
-    profile_path: profileImg,
-    titles
-  } = props;
+type Props = {
+  character: string,
+  id: string,
+  img: string,
+  css: string,
+  name: string,
+  profile_path?: string,
+  titles?: Array<string>
+};
+
+const ActorItem = (props: Props) => {
+  const { character, id, img, css, name, profile_path, titles } = props;
   const reSpecials = new RegExp(Config.reRemoveSpacesSpecials, 'g');
   const link = '/actors/' + name.replace(reSpecials, '');
   const cssClass = css
     ? 'actorItem ' + css
     : 'actorItem col-12 col-sm-6 col-lg-3';
-  var image = img ? img : Config.imgResizeURL + profileImg;
+  var image = img ? img : Config.imgResizeURL + profile_path;
   image = navigator.onLine ? image : Config.jt;
   if (titles) {
     var keys = uniqueId(titles.length);

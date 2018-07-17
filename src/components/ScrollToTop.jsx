@@ -3,6 +3,11 @@ import { Route, withRouter } from 'react-router-dom';
 import Config from '../config.json';
 import { pageTitle } from '../utils';
 
+// type Props = {
+//   location: {},
+//   children: React.Node
+// };
+
 // Scroll back to top of the page & close bootstrap navbar on route change
 class ScrollToTop extends Component {
   componentDidMount() {
@@ -10,6 +15,7 @@ class ScrollToTop extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    // console.log(this.props);
     this.setPageTitle();
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0);
