@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import Logo from '../logo.svg'; //TODO, not working in webpack 4, need to find solution
+import { connect } from 'react-redux';
+import { storeThis } from '../js/actions/index';
+import Config from '../config.json';
+import { uniqueId } from '../utils';
+
+// import Logo from '../logo.svg'; //TODO, not working in webpack 4
+
+const mapStateToProps = (state, ownProps) => {
+  // state will be the result of the redux process
+  // ownProps is all the history which is available straight away and then in state when it has loaded
+  return { data: state.value };
+};
+
+const mapDispatchToProps = dispatch => {
+  //2: mapDispatchToProps connects Redux actions to React props. This will call action storeThis.
+  return {
+    storeThis: val => dispatch(storeThis(val)) // storeThis is the redux action
+  };
+};
 
 class Header extends Component {
   constructor(props) {
@@ -8,6 +26,7 @@ class Header extends Component {
 
     this.searchTerm = '';
     this.searched = '';
+    this.loaded = false;
   }
 
   search = e => {
@@ -17,7 +36,6 @@ class Header extends Component {
       this.searchTerm !== this.searched
     ) {
       this.searched = this.searchTerm;
-      console.log('Header - search fn');
       this.props.history.push('/showlist', { searchTerm: this.searchTerm });
     }
   };
@@ -30,28 +48,38 @@ class Header extends Component {
     this.searchTerm = e.target.value;
   };
 
+  componentDidMount() {
+    this.loaded = true;
+    this.props.storeThis({ value: this }); // 1: trigger redux
+  }
+
   shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
     // no need to re-render
-    return false;
+    return true;
   }
 
   render() {
-    return (
-      <header>
-        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <a className="navbar-brand navCnt" href="/" aria-label="homepage">
-            <Logo />
-          </a>
-          <NavButton />
-          <NavContent _this={this} />
-        </nav>
-      </header>
-    );
+    return <div>{this.loaded && <MainHdr {...this.props} />}</div>;
   }
 }
 
-const NavContent = props => {
-  const { _this } = props;
+const MainHdr = () => {
+  return (
+    <header>
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a className="navbar-brand navCnt" href="/" aria-label="homepage">
+          <Logo />
+        </a>
+        <NavButton />
+        <NavContent />
+      </nav>
+    </header>
+  );
+};
+
+let NavContent = ({ data }) => {
+  const val = data.value;
 
   return (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -72,19 +100,19 @@ const NavContent = props => {
           >
             Categories
           </div>
-          <NavDropDown _this={_this} />
+          <NavDropDown />
         </li>
       </ul>
       <input
         id="searchInput"
         className="form-control mr-sm-2"
-        onChange={_this.keyChange}
-        onKeyUp={_this.search}
+        onChange={val.keyChange}
+        onKeyUp={val.search}
         placeholder="Search for a title..."
         type="search"
         aria-label="Search"
       />
-      <button className="btn stdBtn" onClick={_this.search} type="button">
+      <button className="btn stdBtn" onClick={val.search} type="button">
         Search
       </button>
     </div>
@@ -107,44 +135,34 @@ const NavButton = () => {
   );
 };
 
-const NavDropDown = props => {
-  const { _this } = props;
-
+const NavDropDown = () => {
+  const arrHomeCats = Config.homePageCategories.split(',');
+  const keys = uniqueId(arrHomeCats.length);
+  const navItems = arrHomeCats.map((val, index) => (
+    <CategoryItem title={val} key={keys[index]} />
+  ));
   return (
     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-      <Link
-        to={{ pathname: '/showlist', state: { catSearch: 'Now Playing' } }}
-        onClick={() => _this.clearSearched()}
-        className="dropdown-item"
-      >
-        Now Playing
-      </Link>
-      <Link
-        to={{ pathname: '/showlist', state: { catSearch: 'Popular' } }}
-        onClick={() => _this.clearSearched()}
-        className="dropdown-item"
-      >
-        Popular
-      </Link>
-      <Link
-        to={{ pathname: '/showlist', state: { catSearch: 'Top Rated' } }}
-        onClick={() => _this.clearSearched()}
-        className="dropdown-item"
-      >
-        Top Rated
-      </Link>
-      <Link
-        to={{ pathname: '/showlist', state: { catSearch: 'Upcoming' } }}
-        onClick={() => _this.clearSearched()}
-        className="dropdown-item"
-      >
-        Upcoming
-      </Link>
+      {navItems}
       <div className="dropdown-divider" />
       <Link to="/actors" className="dropdown-item">
         Actors
       </Link>
     </div>
+  );
+};
+
+let CategoryItem = props => {
+  // data contains redux results + value prop that is passed into CategoryItem from NavDropDown
+  const { title } = props;
+  return (
+    <Link
+      to={{ pathname: '/showlist', state: { catSearch: title } }}
+      onClick={() => props.data.value.clearSearched()}
+      className="dropdown-item"
+    >
+      {title}
+    </Link>
   );
 };
 
@@ -160,4 +178,10 @@ const Logo = () => {
   );
 };
 
-export default Header;
+NavContent = connect(mapStateToProps)(NavContent);
+CategoryItem = connect(mapStateToProps)(CategoryItem);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

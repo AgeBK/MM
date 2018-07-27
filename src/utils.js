@@ -106,6 +106,7 @@ function fetchSingle(url) {
         return response.json();
       })
       .then(data => {
+        console.log(this);
         this.setState({ data: data });
         hideLoadingPH();
       })
