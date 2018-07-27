@@ -61,6 +61,8 @@ module.exports = {
       },
       {
         test: /\.(s?css)$/,
+        // We need to use ExtractTextPlugin because webpack by default only understands .js format.
+        // ExtractTextPlugin gets your .css and extracts it into a separate .css file.
         use: ExtractTextPlugin.extract({
           use: [
             { loader: 'css-loader' },
@@ -104,7 +106,7 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     }),
-    new ExtractTextPlugin({ filename: '[name].css' }), // disable in dev for HMR
+    new ExtractTextPlugin({ filename: '[name].[hash].css', disable: true }), // disable in dev for HMR
     // Make sure this is after ExtractTextPlugin!
     new PurifyCSSPlugin({
       // absolute path to components jsx files including sub folders

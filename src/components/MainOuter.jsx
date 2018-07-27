@@ -1,7 +1,12 @@
-import React from 'react';
+// @flow
+import * as React from 'react'; // You need to use import * as React from 'react' here instead of import React from 'react' to get access to the React.Node type.
 import Config from '../config.json';
 
-const MainOuter = props => {
+type Props = {
+  children?: React.Node // children should be declared as a nullable type.
+};
+
+const MainOuter = (props: Props) => {
   return (
     <div className="results home">
       <div className="row">

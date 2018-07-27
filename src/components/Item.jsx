@@ -1,9 +1,22 @@
+// @flow
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import Rating from './Rating';
 
-const Item = props => {
+type Props = {
+  id: number,
+  cname: string,
+  character?: string,
+  img: string,
+  link: string,
+  media: string,
+  overview: string,
+  title: string,
+  score: number
+};
+
+const Item = (props: Props) => {
   // Item component used for ShowSimilar, ShowList & ActorCredits
 
   const {

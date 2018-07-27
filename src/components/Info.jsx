@@ -1,10 +1,19 @@
+// @flow
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import MainOuter from './MainOuter.jsx';
 import Config from '../config.json';
 import { hideLoadingPH } from '../utils';
 
-class Info extends Component {
+type Props = {
+  location: {
+    state: {
+      data: string
+    }
+  }
+};
+
+class Info extends Component<Props> {
   componentDidMount() {
     hideLoadingPH();
   }

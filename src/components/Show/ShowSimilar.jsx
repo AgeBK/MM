@@ -1,9 +1,14 @@
+// @flow
 import React from 'react';
 import Item from '../Item.jsx';
 import Config from '../../config.json';
 import { strConcat, uniqueId } from '../../utils.js';
 
-const ShowSimilar = props => {
+type Props = {
+  mediaType: string,
+  results: Array<any>
+};
+const ShowSimilar = (props: Props) => {
   const data = props.results;
   const mediaType = props.mediaType;
   if (data.length) {
