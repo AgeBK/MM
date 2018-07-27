@@ -87,10 +87,12 @@ class Actor extends Component<Props, State> {
         homepage
       } = this.state.data[0];
       const bDay = dateDMY(birthday); // utils
-      const bYear = bDay.split('/')[2];
-      if (deathday) {
-        var dDay = dateDMY(deathday);
-        var dYr = dDay.split('/')[2];
+      if (bDay) { // sometimes missing in data
+        var bYear = bDay.split('/')[2];
+        if (deathday) {
+          var dDay = dateDMY(deathday);
+          var dYr = dDay.split('/')[2];
+        }
       }
 
       var reNonEng = new RegExp(Config.reRemoveNonEng, 'g');
