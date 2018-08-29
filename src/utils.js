@@ -1,4 +1,5 @@
 import Config from './config.json';
+import $ from 'jquery'; // needed this to make info.test.js work as it imports hideLoadingPH below??
 
 const hideLoadingPH = () => $('#loadingPH').hide(); // hide content placeholder (loading)
 
@@ -130,10 +131,9 @@ function fetchMultiple(urls, page) {
           let combinedData = [];
           data.map((arr, ind) => {
             if (arr && arr.results) {
-              const arr3Items = arr.results.slice(
-                0,
-                Config.homePageResultsLimit
-              ); // just return top 3 results
+              const arr3Items = arr.results
+                .sort(() => 0.5 - Math.random())
+                .slice(0, Config.homePageResultsLimit); // just return top 3 results
               for (let i = 0; i < arr3Items.length; i++) {
                 // add category css class for different styling
                 let el = arr3Items[i];

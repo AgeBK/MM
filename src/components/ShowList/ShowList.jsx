@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import Item from '../Item';
-// import ShowList from './ShowList/ShowList';
+import Item from '../Item/Item';
 import {
   showListURL,
   fetchSingle,
@@ -9,6 +7,7 @@ import {
   showCatURL
 } from '../../utils.js';
 import Config from '../../config.json';
+import styles from './showList.css';
 
 class ShowList extends Component {
   constructor(props) {
@@ -99,12 +98,12 @@ const ShowListItem = props => {
   });
 
   return (
-    <section className="results showlist">
+    <section className="results">
       <div className="row">
-        <h1>
+        <h1 className={styles.showListHdr}>
           {Config.showListHdr} "{title.searchTerm || title.catSearch}"
         </h1>
-        {titles}
+        <div className="row">{titles}</div>
       </div>
     </section>
   );

@@ -1,0 +1,42 @@
+.item {
+  padding: 10px;
+}
+.item.odd {
+  background-color: #677077;
+  color: #fff;
+}
+.item.even {
+  background-color: #fff;
+  color: #677077;
+}
+.item.odd .single-chart svg .percentage {
+  fill: #fff;
+}
+.item .overlay h3 {
+  margin-bottom: 10px;
+}
+.item .overlay .leftItem {
+  float: left;
+}
+.item .overlay .leftItem .title {
+  margin: 0;
+}
+.item .overlay .leftItem .title a {
+  color: #3258d3;
+}
+.item .overlay .leftItem .image {
+  margin: 5px 20px 20px 0;
+  display: block;
+}
+.item .overlay .leftItem .image img {
+  width: 120px;
+  border: 2px solid #3258d3;
+}
+.item .overlay .leftItem .image img:hover {
+  transition-duration: 1s;
+}
+.item .overlay .plot a {
+  float: right;
+  margin: 20px 10% 0 0;
+}
+

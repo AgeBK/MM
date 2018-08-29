@@ -4,9 +4,8 @@ import { Provider } from 'react-redux';
 import store from './js/store/index';
 import 'bootstrap';
 import 'bootstrap/scss/bootstrap.scss';
-import './sass/app.scss';
-import App from './components/App.jsx';
-
+import './sass/global.scss';
+import App from './components/App/App.jsx';
 render(
   <Provider store={store}>
     <App />

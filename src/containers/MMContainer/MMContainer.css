@@ -1,0 +1,20 @@
+.intro {
+  text-align: center;
+  padding: 10px;
+}
+.homeLink {
+  display: block;
+  width: 100%;
+}
+.bgMain {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/src/img/movie-reel.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+}
+p {
+  color: #fff;
+  margin-bottom: 0;
+}

@@ -1,18 +1,37 @@
+// @flow
 import React, { Component } from 'react';
-import ShowCredits from './ShowCredits';
-import ShowSimilar from './ShowSimilar';
-import Rating from '../Rating';
+import ShowCredits from '../ShowCredits/ShowCredits';
+import ShowSimilar from '../ShowSimilar/ShowSimilar';
+import Rating from '../Rating/Rating';
 import Config from '../../config.json';
 import {
   getNamesStr,
   fetchMultiple,
   dateDMY,
-  pageTitle,
   toggleList
 } from '../../utils.js';
+import styles from './show.css';
 
-class Show extends Component {
-  constructor(props) {
+type State = {
+  data: Array<any>
+};
+
+type Props = {
+  cast: Array<any>,
+  crew: Array<any>,
+  mediaType: string,
+  id: number,
+  location: {
+    state: {
+      mediaType: string,
+      id: number
+    }
+  }
+};
+
+class Show extends Component<Props, State> {
+  mediaType: string;
+  constructor(props: Object) {
     super(props);
 
     this.state = {
@@ -30,7 +49,7 @@ class Show extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Object) {
     if (
       nextProps.location.state.id !== this.props.location.state.id &&
       nextProps.location.state.id !== ''
@@ -42,7 +61,7 @@ class Show extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Object, nextState: Object) {
     if (this.state.data[0]) {
       if (this.state.data[0].id === nextState.data[0].id) {
         return false;
@@ -51,7 +70,7 @@ class Show extends Component {
     return true;
   }
 
-  getShowData(id, mType) {
+  getShowData(id: number, mType: string) {
     var urls = [];
     const mediaBase = mType === 'tv' ? Config.tvBaseURL : Config.movieBaseURL;
 
@@ -83,6 +102,7 @@ class Show extends Component {
 
   render() {
     const reCurrency = new RegExp(Config.reCurrency, 'g');
+    console.log(JSON.stringify(this.state.data));
     if (this.state.data.length) {
       // 3 arrays here
       // 1: show info
@@ -110,6 +130,8 @@ class Show extends Component {
       var dtYear = '';
 
       if (this.mediaType === 'tv') {
+        console.log(this.state.data);
+
         var {
           created_by: cBy,
           first_air_date: fAirDate,
@@ -162,8 +184,8 @@ class Show extends Component {
       }
 
       return (
-        <div className="results show">
-          <section className="show" style={bDropBG}>
+        <div className={styles.showRslts}>
+          <section className={styles.show} style={bDropBG}>
             <ShowDetails
               bDrop={bDrop}
               showTitle={showTitle}
@@ -175,9 +197,9 @@ class Show extends Component {
             />
           </section>
           {this.mediaType === 'tv' ? (
-            <section className="other">
+            <section className={styles.other}>
               <div>
-                <span className="label">Created By:</span> {createdBy}
+                <div className="label">Created By:</div> {createdBy}
               </div>
               <h2>{showTitle} facts: </h2>
               <TVOther
@@ -196,9 +218,9 @@ class Show extends Component {
               />
             </section>
           ) : (
-            <section className="other">
+            <section className={styles.other}>
               <div>
-                <span className="label">Tag Line:</span> {tagline}
+                <div className="label">Tag Line:</div> {tagline}
               </div>
               <h2>{showTitle} facts: </h2>
               <MovieOther
@@ -217,7 +239,7 @@ class Show extends Component {
             </section>
           )}
           {this.state.data[2] && this.state.data[2].cast ? (
-            <section className="credits">
+            <section className={styles.credits}>
               <h2>Starring:</h2>
               <ShowCredits {...this.state.data[2]} />
               <div className="col-12">
@@ -233,7 +255,7 @@ class Show extends Component {
             </section>
           ) : null}
           {this.state.data[1] && this.state.data[1].results ? (
-            <section className="similar showHide row">
+            <section className={`${styles.similar} row`}>
               <ShowSimilar
                 {...this.state.data[1]}
                 mediaType={this.props.location.state.mediaType}
@@ -259,17 +281,17 @@ const ShowDetails = props => {
   const { dtYear, genreNames, img, overview, showTitle, voteAvg } = props;
 
   return (
-    <div className="showContInner">
-      <div className="img">
+    <div className={styles.showContInner}>
+      <div className={styles.img}>
         <img src={img} alt={showTitle} title={showTitle} />
       </div>
-      <div className="info">
-        <div className="hero">
+      <div className={styles.info}>
+        <div className={styles.hero}>
           <img src={img} alt={showTitle} title={showTitle} />
         </div>
-        <div className="showInfo">
-          <h1 className="title">
-            {showTitle} <span>({dtYear})</span>
+        <div className={styles.showInfo}>
+          <h1 className={styles.title}>
+            {showTitle} <div>({dtYear})</div>
           </h1>
           <Rating score={voteAvg} />
           <p>
@@ -302,7 +324,7 @@ const TVOther = props => {
   } = props;
 
   return (
-    <div className="otherInner">
+    <div className={styles.otherInner}>
       {homepage ? (
         <div>
           <span className="label">Homepage:</span>
@@ -371,7 +393,7 @@ const MovieOther = props => {
   } = props;
 
   return (
-    <div className="otherInner">
+    <div className={styles.otherInner}>
       {homepage ? (
         <div>
           <span className="label">Homepage:</span>

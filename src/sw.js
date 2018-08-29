@@ -11,4 +11,16 @@ if ('serviceWorker' in navigator) {
     .catch(function(err) {
       console.log('Whoops. Service worker registration failed, error:', err);
     });
+
+    document.getElementById();
+    function funcName(){
+      
+    } 
+    (function(){
+      
+
+
+    })()    
+
+    
 }
