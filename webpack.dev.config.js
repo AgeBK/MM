@@ -6,6 +6,7 @@ const path = require('path');
 const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const PostCSSFlexbugsFixes = require('postcss-flexbugs-fixes');
 //const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const jQueryMin = 'jquery/dist/jquery.slim.min.js';
@@ -60,7 +61,45 @@ module.exports = {
         ]
       },
       {
-        test: /\.(s?css)$/,
+        test: /\.css$/,
+        use: ['css-hot-loader'].concat(
+          ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoPrefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'iOS >= 8',
+                        'Firefox ESR',
+                        'not ie < 9' // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009'
+                    })
+                  ]
+                }
+              }
+            ]
+          })
+        )
+      },
+      {
+        test: /\.(scss)$/,
         // We need to use ExtractTextPlugin because webpack by default only understands .js format.
         // ExtractTextPlugin gets your .css and extracts it into a separate .css file.
         use: ExtractTextPlugin.extract({
@@ -107,15 +146,17 @@ module.exports = {
       inject: 'body'
     }),
     new ExtractTextPlugin({ filename: '[name].[hash].css', disable: true }), // disable in dev for HMR
+
+    // new ExtractTextPlugin({ filename: '[name].[hash].css', allChunks: true }), // disable in dev for HMR
     // Make sure this is after ExtractTextPlugin!
-    new PurifyCSSPlugin({
-      // absolute path to components jsx files including sub folders
-      paths: glob.sync(path.join(__dirname, 'src/components/**/*.jsx')), // "Globs" are the patterns you type when you do stuff like ls *.js on the command line, or put build/* in a .gitignore file.
-      minimize: true,
-      purifyOptions: {
-        whitelist: []
-      }
-    }),
+    // new PurifyCSSPlugin({
+    //   // absolute path to components jsx files including sub folders
+    //   paths: glob.sync(path.join(__dirname, 'src/components/**/*.jsx')), // "Globs" are the patterns you type when you do stuff like ls *.js on the command line, or put build/* in a .gitignore file.
+    //   minimize: true,
+    //   purifyOptions: {
+    //     whitelist: []
+    //   }
+    // }),
     // Tell webpack we want hot reloading
     new webpack.HotModuleReplacementPlugin(),
     // ProvidePlugin like globals, saves having to import/require everywhere

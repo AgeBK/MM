@@ -1,0 +1,102 @@
+// @import url('https://fonts.googleapis.com/css?family=Ranchers');
+@font-face {
+  font-family: 'Ranchers';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ranchers'), local('Ranchers-Regular'),
+    url('../fonts/ranchers-v5-latin-regular.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url('../fonts/ranchers-v5-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+body {
+  background-color: #000;
+  padding: 0;
+  color: #677077;
+}
+h1 {
+  margin-bottom: 10px;
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h1,
+h2,
+h3 {
+  width: 100%;
+  // margin: 0;
+}
+h1,
+h3 {
+  color: #000;
+  -webkit-text-fill-color: #fff;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  text-shadow: 2px 2px 2px #888;
+  font-family: 'Ranchers', cursive !important;
+}
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+.row {
+  margin: 0;
+}
+.results {
+  margin-bottom: 90px;
+  background-color: #fff;
+  border: 1px solid #b5b5b7;
+}
+.stdBtn {
+  color: #ffffff;
+  background-color: #171d8d;
+  border-color: #171d8d;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 4px;
+  height: 34px;
+  cursor: pointer;
+}
+.stdBtn:hover {
+  color: #171d8d;
+  background-color: #fff;
+  border: 1px solid #171d8d;
+}
+.results {
+  margin-bottom: 90px;
+  background-color: #fff;
+  border: 1px solid #b5b5b7;
+}
+.label {
+  font-weight: 700;
+  font-style: italic;
+  margin-right: 5px;
+}
+.hide {
+  display: none;
+}
+.centre {
+  text-align: center;
+}
+.yellow {
+  stroke: #ff0;
+}
+.red {
+  stroke: #f00;
+}
+.green {
+  stroke: rgb(12, 151, 79);
+}
+@media screen and (min-width: 992px) {
+  .results.home,
+  .results.mainOuter,
+  .results.showlist,
+  .results.show,
+  .results.actor,
+  .results.actors {
+    max-width: 992px;
+    margin: 0 auto 90px;
+    overflow: hidden;
+  }
+}

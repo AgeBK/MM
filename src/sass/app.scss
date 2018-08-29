@@ -1,83 +1,11 @@
-// bootstrap widths
-// .col- < 576 (xs)
-// .col-sm >= 576
-// .col-md >= 768
-// .col-lg >= 992
-// .col-xl >= 1200
 @import 'theme';
 @import 'rating';
 @import 'loading';
-@mixin hover {
-  text-decoration: none;
-  cursor: pointer;
-  color: $Light;
-  transition-duration: 1s;
-}
-
-@mixin imgBdr {
-  margin: 5px 10px 10px 0;
-}
-
-@mixin imgBdrLge {
-  margin: 5px 20px 20px 0;
-}
-
-@mixin fancyFont {
-  color: $Black;
-  -webkit-text-fill-color: $White;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: $Black;
-  font-family: cursive;
-}
-
-@mixin normalFont {
-  -webkit-text-fill-color: $Black;
-  -webkit-text-stroke-width: 0;
-  font-family: $theme-font;
-}
-
-@mixin subFont {
-  font-size: 0.4em;
-  @include normalFont;
-  -webkit-text-fill-color: $Light;
-}
-
-@mixin button($colour, $hvrColour) {
-  color: $White;
-  background-color: $colour;
-  border-color: $colour;
-  display: inline-block;
-  margin: 0 auto;
-  padding: 4px;
-  height: 34px;
-  &:hover {
-    color: $colour;
-    background-color: $hvrColour;
-    border-color: $colour;
-  }
-}
-
-@mixin homeBtn {
-  width: 30%;
-  min-width: 135px;
-  margin-top: 20px;
-}
-
-@mixin h2Header {
-  background-color: $Black;
-  color: $White;
-  padding: 10px;
-  text-align: center;
-  margin: 0;
-}
-
-@mixin imgFrame {
-  border: 1px solid $Light;
-  box-shadow: 0 3px 7px #b5b5b7;
-}
+@import 'mixin';
+@import url('https://fonts.googleapis.com/css?family=Ranchers');
 
 body {
-  background-color: $Black;
+  background-color: $Red;
   padding: 0;
   color: $Dark;
 }
@@ -652,9 +580,9 @@ footer {
   }
 }
 @media screen and (min-width: 576px) {
-  h1 {
-    font-size: 54px;
-  }
+  // h1 {
+  //   font-size: 54px;
+  // }
   h3 {
     font-size: 32px;
   }
@@ -790,7 +718,6 @@ footer {
       }
       h3 {
         font-size: 20px;
-        // @include normalFont;
         -webkit-text-fill-color: $White;
       }
       .character {
@@ -841,7 +768,6 @@ footer {
       }
     }
     .overlay {
-      // TODO: overlay, not the best name
       border: 1px solid #888;
       box-shadow: 0 2px 8px $Light;
       padding: 10px 15px;
@@ -861,7 +787,6 @@ footer {
             width: auto;
             border: 2px solid $Dblue;
             &:hover {
-              // border: 2px solid $Blue; // transition-duration: 1s; // TODO: check this and img above on live
               opacity: 0.8;
               transform: scale(1.05);
               backface-visibility: hidden;

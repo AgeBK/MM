@@ -1,0 +1,55 @@
+.actor {
+  border: 1px solid #f3f3f3;
+}
+.actor h2,
+.credits h2 {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  margin: 0;
+}
+.actor h1 {
+  padding: 10px;
+}
+.actor h1 div {
+  font-size: 0.4em;
+  -webkit-text-fill-color: #000;
+  -webkit-text-stroke-width: 0;
+  font-family: Gill Sans Extrabold, sans-serif;
+  -webkit-text-fill-color: #b5b5b7;
+  margin-top: 15px;
+}
+.actor .image img {
+  width: 100%;
+  max-width: 400px;
+  border: 10px ridge #677077;
+}
+.actor .other {
+  text-align: center;
+}
+.actor .other > div {
+  padding: 5px 10px;
+}
+.actor .other > div:nth-child(2n + 0) {
+  background-color: #f9f9f9;
+}
+.actor .other li:nth-child(2n + 1) {
+  background-color: #fff;
+}
+.credits {
+  background: #fff;
+}
+.credits .moreSimilar {
+  margin: 20px auto;
+}
+.credits .character {
+  margin-bottom: 10px;
+}
+.actorImgs div:nth-child(2n + 1) {
+  background-color: #f9f9f9;
+}
+.actorImgs .carousel.slide .img-fluid {
+  border: 1px solid #b5b5b7;
+  box-shadow: 0 3px 7px #b5b5b7;
+}

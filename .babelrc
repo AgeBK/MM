@@ -1,4 +1,8 @@
 {
-  "presets": [["es2015"], "react", "flow"],
-  "plugins": ["babel-plugin-transform-class-properties", "transform-object-rest-spread"] 
+  "presets": [["es2015"], "react", ["flow"]],
+  "plugins": [
+    "babel-plugin-transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-flow-strip-types"
+  ]
 }

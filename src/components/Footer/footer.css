@@ -1,0 +1,31 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #000;
+  text-align: center;
+  left: 0;
+  width: 100%;
+}
+footer a {
+  color: #fff;
+  font-size: 12px;
+  padding: 0 10px;
+  border-right: 1px solid #fff;
+}
+footer a:last-child {
+  border-right: 0;
+}
+footer .scroller {
+  margin-right: 5%;
+  right: 0;
+  cursor: pointer;
+  position: fixed;
+  bottom: 38px;
+  display: none;
+}
+footer .scroller img {
+  opacity: 0.5;
+}
+footer .scroller img:hover {
+  opacity: 1;
+}

@@ -1,0 +1,124 @@
+@import '../sass/theme.scss';
+@import '../sass/rating';
+@import '../sass/loading';
+@import '../sass/mixin';
+
+.test {
+  color: red;
+}
+
+.home {
+  h1 {
+    margin-bottom: 10px;
+  }
+  .intro,
+  .homeCat {
+    text-align: center;
+    padding: 10px;
+  }
+  .homeLink {
+    display: block;
+    width: 100%;
+  }
+  .test {
+    color: red;
+  }
+  .bgMain {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url('/src/img/movie-reel.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    p {
+      color: $White;
+    }
+  }
+  .homeCat {
+    font-size: 36px;
+    margin: 0;
+    background: $Vdblue;
+    color: $White;
+    width: 100%;
+    &:nth-of-type(2) {
+      border-bottom: 5px solid $Dblue;
+    }
+    &:nth-of-type(3) {
+      border-bottom: 5px solid $Dred;
+    }
+    &:nth-of-type(4) {
+      border-bottom: 5px solid $Green;
+    }
+    &:nth-of-type(5) {
+      border-bottom: 5px solid $Lblue;
+    }
+  }
+  .homeItem {
+    padding: 15px;
+    text-align: center;
+    h3 {
+      margin-bottom: 10px;
+    }
+    &:nth-child(2n + 1) {
+      background-color: $Vlight;
+      background-color: $Dark;
+      color: $White;
+      .single-chart svg .percentage {
+        fill: $White;
+      }
+    }
+    &.nowplaying {
+      img {
+        border: 2px solid $Dblue;
+      }
+      .stdBtn {
+        @include button($Dblue, $White);
+        @include homeBtn;
+      }
+    }
+    &.popular {
+      img {
+        border: 2px solid $Dred;
+      }
+      .stdBtn {
+        @include button($Dred, $White);
+        @include homeBtn;
+      }
+    }
+    &.toprated {
+      img {
+        border: 2px solid $Green;
+      }
+      .stdBtn {
+        @include button($Green, $White);
+        @include homeBtn;
+      }
+    }
+    &.upcoming {
+      img {
+        border: 2px solid $Lblue;
+      }
+      .stdBtn {
+        @include button($Lblue, $White);
+        @include homeBtn;
+      }
+    }
+  }
+  .image {
+    margin-bottom: 10px;
+    display: inline-block;
+    img {
+      width: 180px;
+    }
+  }
+  .title {
+    font-size: 20px;
+  }
+  .plot {
+    font-size: 16px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+  }
+  .single-chart {
+    clear: both;
+  }
+}

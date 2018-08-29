@@ -1,0 +1,19 @@
+header {
+  padding-bottom: 95px;
+}
+header nav {
+  background: linear-gradient(#000, #072484);
+}
+header .show {
+  text-align: left;
+}
+header .pointer {
+  cursor: pointer;
+}
+header .navCnt {
+  width: 60px;
+  height: 60px;
+}
+header .navCnt a:hover {
+  color: #fff;
+}

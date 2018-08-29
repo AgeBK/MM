@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import ActorItem from '../ActorItem'; // used for show credits as well
+import ActorItem from '../ActorItem/ActorItem'; // used for show credits as well
 import Config from '../../config.json';
 import { fetchSingle, uniqueId } from '../../utils.js';
+import styles from './actors.css';
 
 class Actors extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Actors extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { 
     if (navigator.onLine) {
       fetchSingle.call(this, Config.peopleURL); // utils
     } else {
@@ -51,7 +52,7 @@ class Actors extends Component {
       });
 
       return (
-        <section className="results actors">
+        <section className={`${styles.actors} results`}>
           <div className="row">
             <h2>Actors</h2>
             {actors}

@@ -1,0 +1,10 @@
+.showListHdr {
+  -webkit-text-fill-color: #000;
+  -webkit-text-stroke-width: 0;
+  font-family: Gill Sans Extrabold, sans-serif;
+  font-size: 1.25rem;
+  background-color: #000325;
+  -webkit-text-fill-color: #fff;
+  padding: 15px;
+  margin: 0;
+}
