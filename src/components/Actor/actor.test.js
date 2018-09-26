@@ -1,44 +1,72 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme'; // enzyme rendering
-import Actor from './Actor';
-import { Component } from 'preact';
+// Copyright 2004-present Facebook. All Rights Reserved.
 
-const mockSearch = jest.fn();
+'use strict';
 
-const props = {
-  location: {
-    state: {
-      id: Boolean
-    }
-  }
-};
+jest.mock('../../js/request'); // real request
 
-// describe what we are testing
-describe('Actor Component', () => {
-  //   Shallow render tests are useful to keep yourself constrained to testing the
-  //   component as a unit and avoid indirectly testing the behavior of child components
+import * as user from './user';
 
-  it('should render required elements without throwing an error', () => {
-    const fakeMethod = jest.spyOn(Actor.prototype, 'componentDidMount');
-    const wrapper = shallow(<Actor {...props} />);
-    wrapper.instance().methodName();
-    expect(fakeMethod).toHaveBeenCalledTimes(1);
+// Testing promise can be done using `.resolves`.
+it('works with resolves', () => {
+  expect.assertions(1);
+  return expect(user.getUserName(18918)).resolves.toEqual('Dwayne Johnson');
+});
 
-    // const Header = wrapper.find('h3');
-    // const Img = wrapper.find('img');
-    console.log(wrapper.debug());
+// The assertion for a promise must be returned.
+it('works with promises', () => {
+  expect.assertions(1);
+  return user
+    .getUserName(18918)
+    .then(data => expect(data).toEqual('Dwayne Johnson'));
+});
+
+// async/await can be used.
+it('works with async/await', async () => {
+  expect.assertions(1);
+  const data = await user.getUserName(18918);
+  expect(data).toEqual('Dwayne Johnson');
+});
+
+// async/await can also be used with `.resolves`.
+it('works with async/await and resolves', async () => {
+  expect.assertions(1);
+  await expect(user.getUserName(18918)).resolves.toEqual('Dwayne Johnson');
+});
+
+// Testing for async errors using `.rejects`.
+it('tests error with rejects', () => {
+  expect.assertions(1);
+  return expect(user.getUserName(3)).rejects.toEqual({
+    error: 'User with 3 not found.'
   });
+});
 
-  //   it('image should render src, alt title', () => {
-  //     expect(Img.prop('src')).toEqual('imgLink');
-  //   });
+// Testing for async errors using Promise.catch.
+test('tests error with promises', async () => {
+  expect.assertions(1);
+  return user.getUserName(2).catch(e =>
+    expect(e).toEqual({
+      error: 'User with 2 not found.'
+    })
+  );
+});
 
-  //   it('should render the Actor Component', () => {
-  //     expect(wrapper.containsMatchingElement(<Actor />)).toEqual(true);
-  //   });
+// Or using async/await.
+it('tests error with async/await', async () => {
+  expect.assertions(1);
+  try {
+    await user.getUserName(1);
+  } catch (e) {
+    expect(e).toEqual({
+      error: 'User with 1 not found.'
+    });
+  }
+});
 
-  //   it('should render 5 divs', () => {
-  //     expect(wrapper.find('div').length).toEqual(5);
-  //   });
+// // Or using async/await with `.rejects`.
+it('tests error with async/await and rejects', async () => {
+  expect.assertions(1);
+  await expect(user.getUserName(3)).rejects.toEqual({
+    error: 'User with 3 not found.'
+  });
 });

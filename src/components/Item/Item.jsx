@@ -31,14 +31,16 @@ const Item = (props: Props) => {
     title,
     score
   } = props;
-  const itemOdr = cname.indexOf('odd') > -1 ? styles.odd : styles.even;
+  const oddOrEven = cname.indexOf('odd') > -1;
+  // const oddOrEven = oddoreven;
+  const itemOdr = oddOrEven ? styles.odd : styles.even;
 
   return (
     <div className={`col-md-6 item ${cname} ${styles.item} ${itemOdr}`}>
       <div className={styles.overlay}>
         <div className={styles.leftItem}>
           <Link
-            to={{ pathname: link, state: { id: id, mediaType: media } }}
+            to={{ pathname: link, state: { id, mediaType: media } }}
             className={styles.image}
             aria-label={title}
           >
@@ -46,13 +48,13 @@ const Item = (props: Props) => {
               <img src={img} alt={title} title={title} />
             </LazyLoad>
           </Link>
-          <Rating score={score} />
+          <Rating score={score} oddOrEven={oddOrEven} />
         </div>
         <Link
-          to={{ pathname: link, state: { id: id, mediaType: media } }}
+          to={{ pathname: link, state: { id, mediaType: media } }}
           aria-label={title}
         >
-          <h3>{title}</h3>
+          <h3 className={styles.title}>{title}</h3>
         </Link>
         {character ? (
           <div className={styles.character}>
@@ -63,7 +65,7 @@ const Item = (props: Props) => {
         <div className={`${styles.plot} ${styles.clearFix}`}>
           {overview}
           <Link
-            to={{ pathname: link, state: { id: id, mediaType: media } }}
+            to={{ pathname: link, state: { id, mediaType: media } }}
             className="stdBtn btn"
             aria-label={title}
           >

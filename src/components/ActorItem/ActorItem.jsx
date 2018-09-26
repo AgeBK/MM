@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import Config from '../../config.json';
@@ -12,29 +12,29 @@ type Props = {
   img: string,
   css: string,
   name: string,
-  profile_path?: string,
+  // profilePath: string, // TODO: make this optional, failing flow test
   titles?: Array<string>
 };
 
 // being used by Actors and ShowCredits
-
 const ActorItem = (props: Props) => {
-  const { character, id, img, css, name, profile_path, titles } = props;
+  const { character, id, img, css, name, titles } = props;
   const reSpecials = new RegExp(Config.reRemoveSpacesSpecials, 'g');
-  const link = '/actors/' + name.replace(reSpecials, '');
+  const link = `/actors/${name.replace(reSpecials, '')}`;
   const cssClass = css
-    ? 'actorItem ' + css
+    ? `actorItem${' '}${css}`
     : 'actorItem col-12 col-sm-6 col-lg-3';
-  var image = img ? img : Config.imgResizeURL + profile_path;
-  image = navigator.onLine ? image : Config.jt;
+  // let image = img || `${Config.imgResizeURL}${profilePath}`;
+  const image = navigator.onLine ? img : Config.jt;
+  let keys = [];
   if (titles) {
-    var keys = uniqueId(titles.length);
+    keys = uniqueId(titles.length);
   }
 
   return (
     <div className={`${styles.actorItem} ${cssClass}`}>
-      <div className={`${styles.actorInner} ${styles.creditsInner} xxx`}>
-        <Link to={{ pathname: link, state: { id: id } }}>
+      <div className={`${styles.actorInner} ${styles.creditsInner}`}>
+        <Link to={{ pathname: link, state: { id } }}>
           <h3>{name}</h3>
           <div className={styles.img}>
             <LazyLoad height={193} offset={100}>
@@ -42,21 +42,21 @@ const ActorItem = (props: Props) => {
             </LazyLoad>
           </div>
         </Link>
-        {character ? (
+        {character && (
           <div className="character">
             <i>
               As <b>{character}</b>
             </i>
           </div>
-        ) : null}
-        {titles ? (
+        )}
+        {titles && (
           <div className="titles">
             <div className="titlesHdr">Known for</div>
             {titles.map((title, i) => (
               <ActorTitles key={keys[i]} titles={title} />
             ))}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
@@ -65,11 +65,11 @@ const ActorItem = (props: Props) => {
 const ActorTitles = props => {
   const [title, id, media] = props.titles;
   const reSpecials = new RegExp(Config.reRemoveSpacesSpecials, 'g');
-  const link = '/showlist/' + title.replace(reSpecials, '');
+  const link = `/showlist/ ${title.replace(reSpecials, '')}`;
 
   return (
     <Link
-      to={{ pathname: link, state: { id: id, mediaType: media } }}
+      to={{ pathname: link, state: { id, mediaType: media } }}
       className="block"
     >
       {title}

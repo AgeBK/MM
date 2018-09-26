@@ -1,8 +1,15 @@
 {
-  "presets": [["es2015"], "react", ["flow"]],
+  "presets": [["es2015"], "react", ["flow"], "env"],
   "plugins": [
     "babel-plugin-transform-class-properties",
     "transform-object-rest-spread",
-    "transform-flow-strip-types"
+    "transform-flow-strip-types",
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
   ]
 }

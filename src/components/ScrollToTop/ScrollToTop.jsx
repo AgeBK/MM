@@ -24,8 +24,7 @@ class ScrollToTop extends Component<Props> {
   }
 
   setPageTitle() {
-    var pathName = this.props.location.pathname;
-    console.log(pathName);
+    let pathName = this.props.location.pathname;
     const reTextAfterLastSlash = new RegExp(Config.reTextAfterLastSlash, 'g');
     const reSplitByCaps = new RegExp(Config.reSplitByCapitals, 'g');
     pathName =
@@ -35,10 +34,19 @@ class ScrollToTop extends Component<Props> {
   }
 
   isNavBarOpen() {
-    if ($('.navbar-toggler').attr('aria-expanded') === 'true') {
-      $('.navbar-toggler').click();
+    const navToggle = window.document.querySelector('.navbar-toggler');
+    const navTogglerOpen = !!navToggle.getAttribute('aria-expanded');
+
+    if (navTogglerOpen) {
+      document
+        .getElementById('navbarSupportedContent')
+        .classList.remove('show');
     }
   }
+  // if ($('.navbar-toggler').attr('aria-expanded') === 'true') {
+  //   debugger;
+  //   $('.navbar-toggler').click();
+  // }
 
   render() {
     return this.props.children;

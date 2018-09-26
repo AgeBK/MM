@@ -104,7 +104,7 @@ hr {
 }
 
 .stdBtn {
-  @include button($Lblue, $White);
+  @include button($Blue, $White);
   cursor: pointer;
 }
 

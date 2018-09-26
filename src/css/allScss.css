@@ -139,7 +139,7 @@
   body {
     background-color: #000;
     padding: 0;
-    color: #677077;
+    color: #8e9ba5;
   }
   h1 {
     font-size: 48px;
@@ -214,7 +214,7 @@
   }
   .stdBtn {
     color: #fff;
-    background-color: #61dafb;
+    background-color: #171d8d;
     border-color: #61dafb;
     display: inline-block;
     margin: 0 auto;
@@ -260,7 +260,7 @@
     padding: 10px;
   }
   .item.odd {
-    background-color: #677077;
+    background-color: #8e9ba5;
     color: #fff;
   }
   .item.odd .single-chart svg .percentage {
@@ -341,7 +341,7 @@
   }
   .home .homeItem:nth-child(2n + 1) {
     background-color: #f9f9f9;
-    background-color: #677077;
+    background-color: #8e9ba5;
     color: #fff;
   }
   .home .homeItem:nth-child(2n + 1) .single-chart svg .percentage {
@@ -516,7 +516,7 @@
   }
   .results.show .credits {
     background-color: #fff;
-    color: #677077;
+    color: #8e9ba5;
     text-align: center;
     padding-bottom: 20px;
   }
@@ -539,7 +539,7 @@
   .results.show .credits .creditsInner h2 {
     font-size: 30px;
     margin: 20px 0 20px 20px;
-    color: #677077;
+    color: #8e9ba5;
   }
   .results.show .credits .creditsInner h3 {
     font-size: 30px;
@@ -554,7 +554,7 @@
     width: 50%;
   }
   .results.show .similar {
-    color: #677077;
+    color: #8e9ba5;
     padding-bottom: 20px;
   }
   .results.show .similar .results {
@@ -650,7 +650,7 @@
   .actor .actor .image img {
     width: 100%;
     max-width: 400px;
-    border: 10px ridge #677077;
+    border: 10px ridge #8e9ba5;
   }
   .actor .actor .other {
     text-align: center;
@@ -681,7 +681,7 @@
     box-shadow: 0 3px 7px #b5b5b7;
   }
   .hero img {
-    border: 10px ridge #677077;
+    border: 10px ridge #8e9ba5;
   }
   .starredIn .character {
     margin-bottom: 10px;
@@ -766,7 +766,7 @@
     }
     .results .item.odd {
       background-color: #fff;
-      color: #677077;
+      color: #8e9ba5;
       border-right: 1px solid #b5b5b7;
     }
     .results .item.odd .single-chart svg .percentage {
@@ -839,7 +839,7 @@
       font-size: 14px;
     }
     .results.show .similar.item.odd {
-      color: #677077;
+      color: #8e9ba5;
     }
     .actors .actorItem h3 {
       font-size: 36px;

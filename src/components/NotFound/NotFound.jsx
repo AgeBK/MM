@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import MMContainer from '../../containers/MMContainer/MMContainer';
 import { hideLoadingPH } from '../../utils';

@@ -13,11 +13,11 @@ class Actors extends Component {
     };
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     if (navigator.onLine) {
       fetchSingle.call(this, Config.peopleURL); // utils
     } else {
-      var hostJS = location.origin + Config.jsFolder; // offline
+      const hostJS = `${window.location.origin}${Config.jsFolder}`; // offline
       fetchSingle.call(this, hostJS + Config.people);
     }
   }
@@ -27,18 +27,19 @@ class Actors extends Component {
       const arr = this.state.data.results;
       const keys = uniqueId(arr.length);
 
-      const actors = arr.map((act, i) => {
-        const {
-          id,
-          name,
-          profile_path: profileImg,
-          known_for: kFor
-        } = this.state.data.results[i]; // actor props
+      const actors = arr.map((actor, i) => {
+        // get each actors props and known for object
+        const { id, name, profile_path: profileImg, known_for: kFor } = actor;
+        console.log(kFor);
+
+        // gets actors known for movies from know_for object
         const titles = kFor.map(val => [
           val.title ? val.title : val.name,
           val.id,
           val.media_type
-        ]); // gets actors known for movies
+        ]);
+        console.log(titles);
+
         const img = Config.imgResizeURL + profileImg;
         return (
           <ActorItem

@@ -1,4 +1,11 @@
 // @import url('https://fonts.googleapis.com/css?family=Ranchers');
+// bootstrap widths
+// .col- < 576 (xs)
+// .col-sm >= 576
+// .col-md >= 768
+// .col-lg >= 992
+// .col-xl >= 1200
+
 @font-face {
   font-family: 'Ranchers';
   font-style: normal;
@@ -7,6 +14,72 @@
     url('../fonts/ranchers-v5-latin-regular.woff2') format('woff2'),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
       url('../fonts/ranchers-v5-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@import 'theme';
+@import 'rating';
+@mixin hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: $Light;
+  transition-duration: 1s;
+}
+
+@mixin imgBdr {
+  margin: 5px 10px 10px 0;
+}
+
+@mixin imgBdrLge {
+  margin: 5px 20px 20px 0;
+}
+
+@mixin fancyFont {
+  color: $Black;
+  -webkit-text-fill-color: $White;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $Black;
+  font-family: cursive;
+}
+
+@mixin normalFont {
+  -webkit-text-fill-color: $Black;
+  -webkit-text-stroke-width: 0;
+  font-family: $theme-font;
+}
+
+@mixin subFont {
+  font-size: 0.4em;
+  @include normalFont;
+  -webkit-text-fill-color: $Light;
+}
+
+@mixin button($colour, $hvrColour) {
+  color: $White;
+  background-color: $colour;
+  border-color: $colour;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 4px;
+  height: 34px;
+  &:hover {
+    color: $colour;
+    background-color: $hvrColour;
+    border-color: $colour;
+  }
+}
+
+@mixin homeBtn {
+  width: 30%;
+  min-width: 135px;
+  margin-top: 20px;
+}
+
+@mixin h2Header {
+  background-color: $Black;
+  color: $White;
+  padding: 10px;
+  text-align: center;
+  margin: 0;
 }
 
 body {
@@ -34,7 +107,7 @@ h3 {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #000;
   text-shadow: 2px 2px 2px #888;
-  font-family: 'Ranchers', cursive !important;
+  font-family: 'Ranchers', cursive;
 }
 a:hover {
   text-decoration: none;
@@ -76,18 +149,20 @@ a:hover {
 .hide {
   display: none;
 }
+.display,
+.reveal,
+.block {
+  display: block;
+}
 .centre {
   text-align: center;
 }
-.yellow {
-  stroke: #ff0;
-}
-.red {
-  stroke: #f00;
-}
-.green {
-  stroke: rgb(12, 151, 79);
-}
+// you target every 2nd container then find the element you want, not try and target every 2nd element directly
+// @media screen and (max-width: 768px) {
+//   .item.similar:nth-child(even) .percentage {
+//     stroke: #e0e0e0;
+//   }
+// }
 @media screen and (min-width: 992px) {
   .results.home,
   .results.mainOuter,

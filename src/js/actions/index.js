@@ -10,7 +10,7 @@
 // receives props from Form.js when save btn is pressed
 // article contains text from form input and unique id
 
-//3: 
+//3: this action provides an object with required param type and the param data we pass our 'this' value to
 export const storeThis = sThis => ({
   type: 'STORE_THIS',
   data: sThis

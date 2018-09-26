@@ -2,13 +2,13 @@ const webpack = require('webpack');
 const autoPrefixer = require('autoprefixer');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const path = require('path');
-const glob = require('glob');
+// const path = require('path');
+// const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PurifyCSSPlugin = require('purifycss-webpack');
-const PostCSSFlexbugsFixes = require('postcss-flexbugs-fixes');
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const PurifyCSSPlugin = require('purifycss-webpack');
+// const PostCSSFlexbugsFixes = require('postcss-flexbugs-fixes');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const jQueryMin = 'jquery/dist/jquery.slim.min.js';
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
   entry: { app: './src/index.js' },
   output: {
     // publicPath: where Webpack serves its ‘Virtual files
-    //path: path.resolve(__dirname, 'dist'),
+    // path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name].js'
   },
@@ -116,7 +116,7 @@ module.exports = {
       }
     ]
   },
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     historyApiFallback: true, // make back/forward buttons in browser work
     hot: true
@@ -137,7 +137,7 @@ module.exports = {
     }
   },
   plugins: [
-    //new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebPackPlugin({
       template: './src/public/index.html',

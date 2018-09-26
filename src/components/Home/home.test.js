@@ -1,20 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme'; // enzyme rendering
-import Info from './info';
+import Home from './Home';
 
-// render in Info.jsx expects props.location.state (mock object)
+// render in Home.jsx expects props.location.state (mock object)
 const props = {
   location: {
     state: {}
   }
 };
 
-// because Info is exported within withRouter (Router props) we have to explicitly
-// tell the shallow fn to render the wrapped component using WrappedComponent keyword.
-describe('Info Component', () => {
-  const wrapper = shallow(<Info.WrappedComponent {...props} />);
+describe('Home Component', () => {
+  const wrapper = shallow(<Home {...props} />);
   const divs = wrapper.find('div');
+  console.log(wrapper.debug());
 
   it('should render without throwing an error', () => {
     expect(wrapper.exists()).toBe(true);
