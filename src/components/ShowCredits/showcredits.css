@@ -1,0 +1,39 @@
+.credits {
+  background-color: #fff;
+  color: #8e9ba5;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.credits .actorItem {
+  padding: 5px;
+  margin-bottom: 20px;
+}
+.credits .actorItem.hide {
+  display: none;
+}
+.credits .actorItem.reveal {
+  display: block;
+}
+.credits .creditsInner {
+  border: 1px solid #b5b5b7;
+  box-shadow: 0 3px 7px #b5b5b7;
+  height: 100%;
+  padding: 5px;
+}
+.credits .creditsInner h2 {
+  font-size: 30px;
+  margin: 20px 0 20px 20px;
+  color: #8e9ba5;
+}
+.credits .creditsInner h3 {
+  font-size: 30px;
+  -webkit-text-fill-color: #fff;
+  margin-bottom: 10px;
+}
+.credits .creditsInner .character {
+  font-size: 16px;
+  margin-top: 10px;
+}
+.credits .creditsInner img {
+  width: 50%;
+}

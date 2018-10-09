@@ -28,6 +28,7 @@ import ErrorBoundry from '../ErrorBoundry/ErrorBoundry';
 
 // for dev only
 // const { whyDidYouUpdate } = require('why-did-you-update');
+
 // whyDidYouUpdate(React);
 
 type State = {

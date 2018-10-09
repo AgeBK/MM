@@ -3,6 +3,7 @@ import React from 'react';
 import ActorItem from '../ActorItem/ActorItem'; // used for actors as well
 import Config from '../../config.json';
 import { uniqueId } from '../../utils.js';
+import styles from './showcredits.css';
 
 type Props = {
   cast: Array<any>,

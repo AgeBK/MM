@@ -1,0 +1,6 @@
+[
+  { "copy": "Select gender", "value": "" },
+  { "copy": "Male", "value": "m" },
+  { "copy": "Female", "value": "f" },
+  { "copy": "I'd rather not specify", "value": "u" }
+]

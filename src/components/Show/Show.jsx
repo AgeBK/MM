@@ -193,22 +193,23 @@ class Show extends Component<Props, State> {
                 </div>
               </section>
             )}
-          {this.state.data[1] && this.state.data[1].results ? (
-            <section className={`${styles.similar} similarCont row`}>
-              <ShowSimilar
-                {...this.state.data[1]}
-                mediaType={this.props.location.state.mediaType}
-              />
-              <button
-                id="similar"
-                className="btn stdBtn"
-                onClick={toggleList}
-                type="button"
-              >
-                Show more similar
-              </button>
-            </section>
-          ) : null}
+          {this.state.data[1] &&
+            this.state.data[1].results && (
+              <section className={`${styles.similar} similarCont row`}>
+                <ShowSimilar
+                  {...this.state.data[1]}
+                  mediaType={this.props.location.state.mediaType}
+                />
+                <button
+                  id="similar"
+                  className="btn stdBtn"
+                  onClick={toggleList}
+                  type="button"
+                >
+                  Show more similar
+                </button>
+              </section>
+            )}
         </div>
       );
     }
@@ -241,139 +242,6 @@ const ShowDetails = props => {
             {overview}
           </p>
         </div>
-      </div>
-    </div>
-  );
-};
-
-const TVOther = props => {
-  const {
-    FAD,
-    LAD,
-    episodes,
-    homepage,
-    networks,
-    orgCtry,
-    orgLang,
-    prodComp,
-    seasons,
-    showTitle,
-    status,
-    voteCnt
-  } = props;
-
-  return (
-    <div className={styles.otherInner}>
-      {homepage ? (
-        <div>
-          <span className="label">Homepage:</span>
-          <a href={homepage} target="_blank" rel="noopener noreferrer">
-            {showTitle}
-          </a>
-        </div>
-      ) : null}
-      <div>
-        <span className="label">Production companies:</span>
-        {prodComp}
-      </div>
-      <div>
-        <span className="label">First air date:</span>
-        {FAD}
-      </div>
-      <div>
-        <span className="label">Last air date:</span>
-        {LAD}
-      </div>
-      <div>
-        <span className="label">Networks:</span>
-        {networks}
-      </div>
-      <div>
-        <span className="label">Status:</span>
-        {status}
-      </div>
-      <div>
-        <span className="label">Seasons:</span>
-        {seasons}
-      </div>
-      <div>
-        <span className="label">Episodes:</span>
-        {episodes}
-      </div>
-      <div>
-        <span className="label">Vote count:</span>
-        {voteCnt}
-      </div>
-      <div>
-        <span className="label">Original language:</span>
-        {orgLang}
-      </div>
-      <div>
-        <span className="label">Origin country:</span>
-        {orgCtry}
-      </div>
-    </div>
-  );
-};
-
-const MovieOther = props => {
-  const {
-    budget,
-    homepage,
-    languages,
-    orgLang,
-    prodCompNames,
-    releaseDate,
-    revenue,
-    runtime,
-    showTitle,
-    status,
-    voteCnt
-  } = props;
-
-  return (
-    <div className={styles.otherInner}>
-      {homepage ? (
-        <div>
-          <span className="label">Homepage:</span>
-          <a href={homepage} target="_blank" rel="noopener noreferrer">
-            {showTitle}
-          </a>
-        </div>
-      ) : null}
-      <div>
-        <span className="label">Budget:</span>${budget}
-      </div>
-      <div>
-        <span className="label">Revenue:</span>${revenue}
-      </div>
-      <div>
-        <span className="label">Production Companies:</span>
-        {prodCompNames}
-      </div>
-      <div>
-        <span className="label">Release Date:</span>
-        {releaseDate}
-      </div>
-      <div>
-        <span className="label">Run Time:</span>
-        {runtime} mins
-      </div>
-      <div>
-        <span className="label">Status:</span>
-        {status}
-      </div>
-      <div>
-        <span className="label">Vote count:</span>
-        {voteCnt}
-      </div>
-      <div>
-        <span className="label">Original Language:</span>
-        {orgLang}
-      </div>
-      <div>
-        <span className="label">Languages:</span>
-        {languages}
       </div>
     </div>
   );

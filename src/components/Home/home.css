@@ -28,6 +28,9 @@
   background-color: #8e9ba5;
   color: #fff;
 }
+.homeCat h2 {
+  margin-bottom: 0;
+}
 .homeItem h3 {
   margin-bottom: 10px;
   font-size: 2.5rem;
@@ -148,10 +151,9 @@
 .single-chart {
   clear: both;
 }
-.plot {
-  font-size: 16px;
-  margin-bottom: 20px;
-  word-wrap: break-word;
+
+.homeItem .btnLink {
+  margin-top: 15px;
 }
 
 @media screen and (min-width: 576px) {
@@ -161,9 +163,6 @@
   .homeItem .imageLink {
     float: left;
     margin-right: 15px;
-  }
-  .homeItem .btnLink {
-    margin-top: 15px;
   }
 }
 

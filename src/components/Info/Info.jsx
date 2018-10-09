@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import MMContainer from '../../containers/MMContainer/MMContainer';
+import Test from '../Test/Test';
+
 import Config from '../../config.json';
 import { hideLoadingPH } from '../../utils';
 import styles from './info.css';
@@ -24,9 +26,10 @@ class Info extends Component<Props> {
     const info = Config[data];
     return (
       <MMContainer>
-        <div className={styles.information}>
+        {/* <div className={styles.information}>
           <div dangerouslySetInnerHTML={{ __html: info }} />
-        </div>
+        </div> */}
+        <Test />
       </MMContainer>
     );
   }
