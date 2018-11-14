@@ -3,6 +3,7 @@ import React from 'react';
 import ActorItem from '../ActorItem/ActorItem'; // used for actors as well
 import Config from '../../config.json';
 import { uniqueId } from '../../utils.js';
+import styles from './showcredits.css';
 
 type Props = {
   cast: Array<any>,
@@ -15,13 +16,13 @@ const ShowCredits = (props: Props) => {
 
   if (cast.length) {
     // return cast.map((arr, i) => { // this is what i had working for react
-    var actors = cast.map((arr, i) => {
+    const actors = cast.map((arr, i) => {
       const { character, name, profile_path: profilePath, id } = cast[i];
       const image = Config.imgResizeURL + profilePath;
       const cName =
         i < Config.creditsLimit // 6
-          ? 'col-6 col-sm-4 col-lg-2 block'
-          : 'col-6 col-sm-4 col-lg-2 extra hide';
+          ? 'col-12 col-sm-4 col-lg-2 block'
+          : 'col-12 col-sm-4 col-lg-2 extra hide';
       return (
         <ActorItem
           key={keys[i]}

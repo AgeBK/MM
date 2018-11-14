@@ -2,16 +2,6 @@
   text-align: center;
   padding: 10px;
 }
-.flex {
-  display: flex;
-}
-.homeLink {
-  display: block;
-  width: 100%;
-}
-.bgMain p {
-  color: #fff;
-}
 .homeCat {
   text-align: center;
   font-size: 36px;
@@ -35,24 +25,39 @@
 .homeItem {
   padding: 15px;
   text-align: center;
-  background-color: #fff;
+  background-color: #8e9ba5;
+  color: #fff;
+}
+.homeCat h2 {
+  margin-bottom: 0;
 }
 .homeItem h3 {
   margin-bottom: 10px;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
 }
 .homeItem:nth-child(2n + 1) {
-  background-color: #677077;
-  color: #fff;
+  background-color: #fff;
+  color: #8e9ba5;
 }
 .homeItem:nth-child(2n + 1) .single-chart svg .percentage {
   fill: #fff;
 }
-.homeItem.nowPlaying img {
+.homeItem img {
   border: 2px solid #072484;
 }
-.homeItem.nowPlaying .stdBtn {
+.homeItem:nth-child(n + 5) img {
+  border: 2px solid #a30101;
+}
+.homeItem:nth-child(n + 9) img {
+  border: 2px solid #28a745;
+}
+.homeItem:nth-child(n + 13) img {
+  border: 2px solid #61dafb;
+}
+.homeItem.nowplaying .btn {
   color: #fff;
-  background-color: #072484;
+  background-color: yellow;
   border-color: #072484;
   display: inline-block;
   margin: 0 auto;
@@ -61,8 +66,9 @@
   width: 30%;
   min-width: 135px;
   margin-top: 20px;
+  border: 1px solid red;
 }
-.homeItem.nowPlaying .stdBtn:hover {
+.homeItem.nowplaying .stdBtn:hover {
   color: #072484;
   background-color: #fff;
   border-color: #072484;
@@ -145,10 +151,19 @@
 .single-chart {
   clear: both;
 }
-.plot {
-  font-size: 16px;
-  margin-bottom: 20px;
-  word-wrap: break-word;
+
+.homeItem .btnLink {
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 576px) {
+  .homeItem {
+    text-align: left;
+  }
+  .homeItem .imageLink {
+    float: left;
+    margin-right: 15px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -159,18 +174,15 @@
   .homeItem {
     text-align: center;
   }
-  .homeItem .image {
+  .homeItem .imageLink {
     float: none;
-    margin: 0;
+    margin-right: 0;
   }
-  .homeItem .image img {
-    width: 100%;
-    margin-bottom: 20px;
+  .homeItem h3 {
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
-  .homeItem .title {
-    font-size: 3vw;
-  }
-  .plot {
+  .homeItem .plot {
     text-align: left;
   }
 }

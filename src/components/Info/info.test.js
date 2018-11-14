@@ -15,7 +15,6 @@ const props = {
 describe('Info Component', () => {
   const wrapper = shallow(<Info.WrappedComponent {...props} />);
   const divs = wrapper.find('div');
-  console.log(wrapper.debug());
 
   it('should render without throwing an error', () => {
     expect(wrapper.exists()).toBe(true);

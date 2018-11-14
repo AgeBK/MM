@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import * as React from 'react'; // You need to use import * as React from 'react' here instead of import React from 'react' to get access to the React.Node type.
 import { withRouter } from 'react-router-dom';
 import { hideLoadingPH } from '../../utils';
 import Info from '../Info/Info';

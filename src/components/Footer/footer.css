@@ -22,6 +22,8 @@ footer .scroller {
   position: fixed;
   bottom: 38px;
   display: none;
+  border: 0;
+  background-color: transparent;
 }
 footer .scroller img {
   opacity: 0.5;

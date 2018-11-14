@@ -1,0 +1,55 @@
+[
+  { "copy": "month", "value": "" },
+  {
+    "copy": "Jan",
+    "value": "1"
+  },
+  {
+    "copy": "Feb",
+    "value": "2"
+  },
+  {
+    "copy": "Mar",
+    "value": "3"
+  },
+  {
+    "copy": "Apr",
+    "value": "4"
+  },
+  {
+    "copy": "May",
+    "value": "5"
+  },
+  {
+    "copy": "Jun",
+    "value": "6"
+  },
+  {
+    "copy": "Jul",
+    "value": "7"
+  },
+  {
+    "copy": "Aug",
+    "value": "8"
+  },
+  {
+    "copy": "Sep",
+    "value": "9"
+  },
+  {
+    "copy": "Oct",
+    "value": "10"
+  },
+  {
+    "copy": "Nov",
+    "value": "11"
+  },
+  {
+    "copy": "Dec",
+    "value": "12"
+  },
+  {
+    "copy": "I'd rather not specify",
+    "value": null
+  }
+]

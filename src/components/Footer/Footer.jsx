@@ -1,19 +1,18 @@
+/* eslint no-unused-expressions: 0 */ // TODO: find a better fix
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Config from '../../config.json';
 import styles from './footer.css';
 
 class Footer extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const scroller = document.getElementById('scroller');
     window.addEventListener('scroll', () => {
-      window.scrollY > Config.showScrollY
-        ? (scroller.style.display = 'block')
-        : (scroller.style.display = 'none');
+      if (window.scrollY > Config.showScrollY) {
+        scroller.style.display = 'block';
+      } else {
+        scroller.style.display = 'none';
+      }
     });
   }
 
@@ -29,17 +28,19 @@ class Footer extends PureComponent {
   render() {
     return (
       <footer>
-        <div
+        <button
           id="scroller"
           className={`${styles.scroller} scroller`}
           onClick={this.smoothscroll}
+          onKeyDown={this.smoothscroll}
+          type="button"
         >
           <img
             src={Config.scrollerImg}
             alt="scroll to top"
             title="scroll to top"
           />
-        </div>
+        </button>
         <a href="/">Home</a>
         <Link to={{ pathname: '/info', state: { data: 'terms' } }}>
           Terms of use

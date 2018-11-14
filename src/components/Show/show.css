@@ -12,12 +12,12 @@
   color: inherit;
 }
 .showRslts .show {
-  background-size: 0px;
+  /* background-size: 0px; */
   text-align: center;
   background-color: #fff;
 }
 .showRslts .show .img {
-  display: none;
+  display: none; /* hide background on smaller screens*/
 }
 .showRslts .show .info {
   background-color: #fff;
@@ -45,7 +45,7 @@
 }
 .showRslts .credits {
   background-color: #fff;
-  color: #677077;
+  color: #8e9ba5;
   text-align: center;
   padding-bottom: 20px;
 }
@@ -68,7 +68,7 @@
 .showRslts .credits .creditsInner h2 {
   font-size: 30px;
   margin: 20px 0 20px 20px;
-  color: #677077;
+  color: #8e9ba5;
 }
 .showRslts .credits .creditsInner h3 {
   font-size: 30px;
@@ -82,8 +82,8 @@
 .showRslts .credits .creditsInner img {
   width: 50%;
 }
-.showRslts .similar {
-  color: #677077;
+/* .showRslts .similar {
+  color: #8e9ba5;
   padding-bottom: 20px;
 }
 .showRslts .similar .results {
@@ -99,8 +99,8 @@
 }
 .showRslts .similar.item.reveal {
   display: block;
-}
-footer {
+} */
+/* footer {
   position: fixed;
   bottom: 0;
   background-color: #000;
@@ -130,11 +130,11 @@ footer .scroller img {
 }
 footer .scroller img:hover {
   opacity: 1;
-}
-.toggleList {
+} */
+/* .toggleList {
   text-align: center;
-}
-.actors {
+} */
+/* .actors {
   text-align: center;
 }
 .actors h2 {
@@ -179,7 +179,7 @@ footer .scroller img:hover {
 .actor .actor .image img {
   width: 100%;
   max-width: 400px;
-  border: 10px ridge #677077;
+  border: 10px ridge #8e9ba5;
 }
 .actor .actor .other {
   text-align: center;
@@ -208,9 +208,9 @@ footer .scroller img:hover {
 .actor .actorImgs .carousel.slide .img-fluid {
   border: 1px solid #b5b5b7;
   box-shadow: 0 3px 7px #b5b5b7;
-}
-.hero img {
-  border: 10px ridge #677077;
+} */
+/* .hero img {
+  border: 10px ridge #8e9ba5;
 }
 .starredIn .character {
   margin-bottom: 10px;
@@ -235,7 +235,7 @@ footer .scroller img:hover {
 }
 .errorBdry img {
   max-width: 100%;
-}
+} */
 @media screen and (min-width: 380px) {
   .home .homeItem {
     text-align: left;
@@ -295,7 +295,7 @@ footer .scroller img:hover {
   }
   .results .item.odd {
     background-color: #fff;
-    color: #677077;
+    color: #8e9ba5;
     border-right: 1px solid #b5b5b7;
   }
   .results .item.odd .single-chart svg .percentage {
@@ -368,7 +368,7 @@ footer .scroller img:hover {
     font-size: 14px;
   }
   .showRslts .similar.item.odd {
-    color: #677077;
+    color: #8e9ba5;
   }
   .actors .actorItem h3 {
     font-size: 36px;

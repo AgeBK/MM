@@ -2,15 +2,12 @@
   padding: 10px;
 }
 .item.odd {
-  background-color: #677077;
+  background-color: #8e9ba5;
   color: #fff;
 }
 .item.even {
   background-color: #fff;
-  color: #677077;
-}
-.item.odd .single-chart svg .percentage {
-  fill: #fff;
+  color: #8e9ba5;
 }
 .item .overlay h3 {
   margin-bottom: 10px;
@@ -39,4 +36,36 @@
   float: right;
   margin: 20px 10% 0 0;
 }
+.item .clearFix::after {
+  content: '';
+  clear: both;
+  display: table;
+}
 
+@media only screen and (min-width: 576px) {
+  .title {
+    font-size: 2.4rem;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .item .overlay {
+    border: 1px solid #888;
+    -webkit-box-shadow: 0 2px 8px #b5b5b7;
+    box-shadow: 0 2px 8px #b5b5b7;
+    padding: 10px 15px;
+    height: 486px;
+    /* overflow: hidden;  hack for when the text is long */
+  }
+
+  .item.odd {
+    background-color: #fff;
+    color: #8e9ba5;
+  }
+}
+@media screen and (min-width: 992px) {
+  .item .overlay {
+    height: 406px;
+  }
+}

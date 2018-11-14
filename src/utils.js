@@ -1,13 +1,13 @@
-import Config from './config.json';
 import $ from 'jquery'; // needed this to make info.test.js work as it imports hideLoadingPH below??
+import Config from './config.json';
 
 const hideLoadingPH = () => $('#loadingPH').hide(); // hide content placeholder (loading)
 
 const uniqueId = num => {
   // unique id 1 in 10^15 chance of collision
   if (typeof num === 'number') {
-    var arr = [];
-    for (var i = 0; i < num; i++) {
+    const arr = [];
+    for (let i = 0; i < num; i++) {
       arr.push(
         Math.random()
           .toString(36)
@@ -20,7 +20,7 @@ const uniqueId = num => {
 
 const pageTitle = pathName => {
   // document page title
-  var pgeTitle = Config.siteTitle;
+  let pgeTitle = Config.siteTitle;
   switch (pathName) {
     case '/':
       break;
@@ -31,7 +31,7 @@ const pageTitle = pathName => {
       pgeTitle += ' - Actors';
       break;
     default:
-      pgeTitle += ' - ' + pathName;
+      pgeTitle += ` - ${pathName}`;
       break;
   }
   return pgeTitle;
@@ -61,14 +61,15 @@ const getNamesStr = arr => {
   }
 };
 
-const strConcat = (str, len) => {
+const concatStr = (str, len) => {
   // shorten long movie plots
+  let strConcat = str;
   if (typeof str === 'string' && str.length > len) {
-    str = str.substring(0, len);
-    var lastSpace = str.lastIndexOf(' ');
-    str = str.substring(0, lastSpace) + '...';
+    strConcat = strConcat.substring(0, len);
+    const lastSpace = strConcat.lastIndexOf(' ');
+    strConcat = `${strConcat.substring(0, lastSpace)}...`;
   }
-  return str;
+  return strConcat;
 };
 
 const showCatURL = cat => {
@@ -82,13 +83,16 @@ const showCatURL = cat => {
       return Config.popularURL;
     case 'Upcoming':
       return Config.upcomingURL;
+    default:
+      return Config.nowPlayingURL;
   }
 };
 
 const toggleList = e => {
   // show/hide cast/similar on show page
-  var text = e.target.innerText;
-  var target = '.' + e.target.id + '.hide';
+  debugger;
+  const text = e.target.innerText;
+  const target = `.${e.target.id}.hide`;
   $(target).toggleClass('reveal');
   e.target.innerText =
     text.indexOf('more') === -1
@@ -134,12 +138,12 @@ function fetchMultiple(urls, page) {
               const arr3Items = arr.results
                 .sort(() => 0.5 - Math.random())
                 .slice(0, Config.homePageResultsLimit); // just return top 3 results
-              for (let i = 0; i < arr3Items.length; i++) {
+              for (let j = 0; j < arr3Items.length; j++) {
                 // add category css class for different styling
-                let el = arr3Items[i];
+                let el = arr3Items[j];
                 el['css_class'] = this.categorys[ind];
               }
-              //create 4 arrays, one with title and 3 with data
+              // create 4 arrays, one with title and 3 with data
               combinedData = combinedData
                 .concat(this.categorys[ind])
                 .concat(arr.results.slice(0, 3));
@@ -155,7 +159,7 @@ function fetchMultiple(urls, page) {
       .then(() => {
         // bootstrap carousel on actor page
         if (page === 'actor') {
-          $('#carouselActor').on('slide.bs.carousel', function(e) {
+          $('#carouselActor').on('slide.bs.carousel', e => {
             const $e = $(e.relatedTarget);
             const idx = $e.index();
             const itemsPerSlide = 4;
@@ -189,7 +193,7 @@ export {
   hideLoadingPH,
   pageTitle,
   showListURL,
-  strConcat,
+  concatStr,
   showCatURL,
   toggleList,
   uniqueId

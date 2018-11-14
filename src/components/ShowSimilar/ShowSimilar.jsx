@@ -2,7 +2,7 @@
 import React from 'react';
 import Item from '../Item/Item';
 import Config from '../../config.json';
-import { strConcat, uniqueId } from '../../utils.js';
+import { concatStr, uniqueId } from '../../utils.js';
 
 type Props = {
   mediaType: string,
@@ -22,12 +22,13 @@ const ShowSimilar = (props: Props) => {
         ? Config.imgResizeURL + title.poster_path
         : Config.pulpFictCover;
       const reRemSpacSpec = new RegExp(Config.reRemoveSpacesSpecials, 'g');
-      const link = '/showlist/' + name.replace(reRemSpacSpec, '');
-      var cName = (i + 1) % 2 === 0 ? 'similar even' : 'similar odd';
+      const link = `/showlist/${name.replace(reRemSpacSpec, '')}`;
+      let cName = (i + 1) % 2 === 0 ? 'similar even' : 'similar odd';
       cName += i > Config.showSimilarLimit ? ' extra hide' : ' reveal';
 
       const voteAvg = title.vote_average;
-      const overview = strConcat(title.overview, Config.strLength250);
+      const overview = concatStr(title.overview, Config.strLength350);
+      const oddOrEven = i % 2 !== 0;
 
       return (
         <Item
@@ -40,6 +41,7 @@ const ShowSimilar = (props: Props) => {
           overview={overview}
           score={voteAvg}
           title={name}
+          oddoreven={oddOrEven}
         />
       );
     });

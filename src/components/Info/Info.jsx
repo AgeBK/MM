@@ -2,8 +2,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import MMContainer from '../../containers/MMContainer/MMContainer';
+import Test from '../Test/Test';
+
 import Config from '../../config.json';
 import { hideLoadingPH } from '../../utils';
+import styles from './info.css';
 
 type Props = {
   location: {
@@ -20,12 +23,13 @@ class Info extends Component<Props> {
 
   render() {
     const { data } = this.props.location.state;
-    var info = Config[data];
+    const info = Config[data];
     return (
       <MMContainer>
-        <div className="information">
+        {/* <div className={styles.information}>
           <div dangerouslySetInnerHTML={{ __html: info }} />
-        </div>
+        </div> */}
+        <Test />
       </MMContainer>
     );
   }

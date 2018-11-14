@@ -1,0 +1,12 @@
+.other {
+  text-align: center;
+}
+.other > div {
+  padding: 5px;
+}
+.other .otherInner > div {
+  padding: 5px;
+}
+.other .otherInner > div:nth-child(2n + 0) {
+  background-color: #fff;
+}

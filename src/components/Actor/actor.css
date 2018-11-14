@@ -19,11 +19,12 @@
   font-family: Gill Sans Extrabold, sans-serif;
   -webkit-text-fill-color: #b5b5b7;
   margin-top: 15px;
+  text-shadow: none;
 }
 .actor .image img {
   width: 100%;
   max-width: 400px;
-  border: 10px ridge #677077;
+  border: 10px ridge #8e9ba5;
 }
 .actor .other {
   text-align: center;

@@ -1,0 +1,12 @@
+[
+  { "copy": "Select state", "value": "" },
+  { "copy": "ACT", "value": "ACT" },
+  { "copy": "NSW", "value": "NSW" },
+  { "copy": "TAS", "value": "TAS" },
+  { "copy": "NT", "value": "NT" },
+  { "copy": "QLD", "value": "QLD" },
+  { "copy": "SA", "value": "SA" },
+  { "copy": "WA", "value": "WA" },
+  { "copy": "VIC", "value": "VIC" },
+  { "copy": "I'd rather not specify", "value": "null" }
+]

@@ -3,7 +3,7 @@ import Item from '../Item/Item';
 import {
   showListURL,
   fetchSingle,
-  strConcat,
+  concatStr,
   showCatURL
 } from '../../utils.js';
 import Config from '../../config.json';
@@ -12,38 +12,20 @@ import styles from './showList.css';
 class ShowList extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.location.state);
 
     this.state = {
       data: []
     };
   }
-
   componentDidMount() {
-    console.log('componentDidMount');
-    this.props.location.state.searchTerm
-      ? this.loadData(true, this.props.location.state.searchTerm)
-      : this.loadData(false, this.props.location.state.catSearch);
-  }
-
-  loadData(isSearchTerm, val) {
-    console.log('loadData');
-    if (navigator.onLine) {
-      if (isSearchTerm) {
-        fetchSingle.call(this, showListURL(val)); // utils
-      } else {
-        fetchSingle.call(this, showCatURL(val)); // utils
-      }
+    if (this.props.location.state.searchTerm) {
+      this.loadData(true, this.props.location.state.searchTerm);
     } else {
-      console.log('else');
-
-      var hostJS = location.origin + Config.jsFolder; // offline
-      fetchSingle.call(this, hostJS + Config.showList);
+      this.loadData(false, this.props.location.state.catSearch);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
     if (
       nextProps.location.state.searchTerm &&
       nextProps.location.state.searchTerm !==
@@ -58,18 +40,29 @@ class ShowList extends Component {
     }
   }
 
+  loadData(isSearchTerm, val) {
+    if (navigator.onLine) {
+      if (isSearchTerm) {
+        fetchSingle.call(this, showListURL(val)); // utils
+      } else {
+        fetchSingle.call(this, showCatURL(val)); // utils
+      }
+    } else {
+      const hostJS = `${(window.location.origin, Config.jsFolder)}`; // offline
+      fetchSingle.call(this, hostJS + Config.showList);
+    }
+  }
+
   render() {
     return this.state.data.results ? (
-      <ShowListItem {...this.state} title={this.props.location.state} />
+      <ShowListItem {...this.state} catTitle={this.props.location.state} />
     ) : null;
   }
 }
 
 const ShowListItem = props => {
-  const { title } = props;
-
-  console.log(props);
-  var titles = props.data.results.map((title, i) => {
+  const { catTitle } = props;
+  const titles = props.data.results.map((title, i) => {
     const media = title.media_type === 'tv' ? 'tv' : 'movie';
     const name = title.name ? title.name : title.title;
     const id = title.id;
@@ -78,9 +71,9 @@ const ShowListItem = props => {
       : Config.pulpFictCover;
     const voteAvg = title.vote_average;
     const reRemSpacSpec = new RegExp(Config.reRemoveSpacesSpecials, 'g');
-    const link = '/showlist/' + name.replace(reRemSpacSpec, '');
+    const link = `/showlist/${name.replace(reRemSpacSpec, '')}`;
     const cName = (i + 1) % 2 === 0 ? 'even' : 'odd';
-    const overview = strConcat(title.overview, 200);
+    const overview = concatStr(title.overview, 200);
 
     return (
       <Item
@@ -101,7 +94,9 @@ const ShowListItem = props => {
     <section className="results">
       <div className="row">
         <h1 className={styles.showListHdr}>
-          {Config.showListHdr} "{title.searchTerm || title.catSearch}"
+          {Config.showListHdr} {'"'}
+          {catTitle.searchTerm || catTitle.catSearch}
+          {'"'}
         </h1>
         <div className="row">{titles}</div>
       </div>
