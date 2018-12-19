@@ -82,10 +82,10 @@
 .showRslts .credits .creditsInner img {
   width: 50%;
 }
-/* .showRslts .similar {
+.similar {
   color: #8e9ba5;
   padding-bottom: 20px;
-}
+} /* 
 .showRslts .similar .results {
   border: 0;
   max-width: 100%;

@@ -84,8 +84,6 @@ class Test extends Component {
     return items;
   };
 
-
-
   updateField = e => {
     this.setState(
       {
@@ -98,14 +96,14 @@ class Test extends Component {
   buildForm = () => {
     const usrForm = Object.keys(this.formFields).map(field => {
       // debugger;
-      console.log(this.formFields[field].value);
-      console.log(this.state[field]);
+      // console.log(this.formFields[field].value);
+      // console.log(this.state[field]);
 
       this.formFields[field].value = this.state[field];
 
-      console.log(field); // firstName key
-      console.log(this.formFields); // this.formFields
-      console.log(this.formFields[field].type); // firstName
+      // console.log(field); // firstName key
+      // console.log(this.formFields); // this.formFields
+      // console.log(this.formFields[field].type); // firstName
 
       switch (this.formFields[field].type) {
         case 'text':

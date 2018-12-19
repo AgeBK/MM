@@ -90,7 +90,6 @@ const showCatURL = cat => {
 
 const toggleList = e => {
   // show/hide cast/similar on show page
-  debugger;
   const text = e.target.innerText;
   const target = `.${e.target.id}.hide`;
   $(target).toggleClass('reveal');
@@ -100,10 +99,7 @@ const toggleList = e => {
       : text.replace('more', 'less');
 };
 
-const error = error => {
-  console.log(new Error(error));
-};
-
+const error = err => console.log(new Error(err));
 function fetchSingle(url) {
   if (url && typeof url === 'string') {
     fetch(url)
@@ -112,7 +108,7 @@ function fetchSingle(url) {
       })
       .then(data => {
         console.log(this);
-        this.setState({ data: data });
+        this.setState({ data });
         hideLoadingPH();
       })
       .catch(err => error(err));
@@ -121,37 +117,40 @@ function fetchSingle(url) {
 
 function fetchMultiple(urls, page) {
   if (Array.isArray(urls)) {
-    var apiRequests = [];
-    for (var i = 0; i < urls.length; i++) {
+    const apiRequests = [];
+    for (let i = 0; i < urls.length; i++) {
       apiRequests[i] = fetch(urls[i])
         .then(response => response.json())
         .catch(err => console.log(new Error(err)));
     }
 
     Promise.all(apiRequests)
-
       .then(data => {
         if (page === 'home') {
-          let combinedData = [];
-          data.map((arr, ind) => {
+          const combinedData = [];
+          data.forEach((arr, ind) => {
             if (arr && arr.results) {
               const arr3Items = arr.results
                 .sort(() => 0.5 - Math.random())
                 .slice(0, Config.homePageResultsLimit); // just return top 3 results
               for (let j = 0; j < arr3Items.length; j++) {
                 // add category css class for different styling
-                let el = arr3Items[j];
-                el['css_class'] = this.categorys[ind];
+                const el = arr3Items[j];
+                el.css_class = this.categorys[ind];
               }
               // create 4 arrays, one with title and 3 with data
-              combinedData = combinedData
-                .concat(this.categorys[ind])
-                .concat(arr.results.slice(0, 3));
+              arr3Items.unshift(this.categorys[ind]);
+              combinedData.push(arr3Items);
+              // console.log(fourArr);
+
+              // combinedData = combinedData
+              //   .concat(this.categorys[ind])
+              //   .concat(arr.results.slice(0, 3));
             }
           });
           this.setState({ data: combinedData });
         } else {
-          this.setState({ data: data });
+          this.setState({ data });
         }
         hideLoadingPH();
       })
@@ -168,7 +167,7 @@ function fetchMultiple(urls, page) {
             if (idx >= totalItems - (itemsPerSlide - 1)) {
               const it = itemsPerSlide - (totalItems - idx);
               const carItem = $('.carousel-item');
-              for (var i = 0; i < it; i++) {
+              for (let i = 0; i < it; i++) {
                 if (e.direction === 'left') {
                   carItem.eq(i).appendTo('.carousel-inner');
                 } else {

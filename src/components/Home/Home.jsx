@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { fetchMultiple, concatStr, uniqueId } from '../../utils';
@@ -61,28 +61,33 @@ class Home extends Component<Props, State> {
   render() {
     if (this.state.data.length > 0) {
       const arr = this.state.data;
+
       const keys = uniqueId(arr.length);
       return (
         <MMContainer>
           <div className={`${styles.intro} col-12`}>
             Check out some of the most popular categories below
           </div>
-          <div className="row">
-            {arr.map(
-              (obj, i) =>
-                i % 4 === 0 ? (
-                  <Link
-                    key={keys[i]}
-                    to={{ pathname: 'showlist', state: { catSearch: obj } }}
-                    className={`${styles.homeCat} col-12`}
-                  >
-                    <h2>{obj}</h2>
-                  </Link>
-                ) : (
-                  <HomeItem key={keys[i]} {...obj} ind={i} />
-                )
-            )}
-          </div>
+          {arr.map((showArr, i) => (
+            <div className="row" key={keys[i]}>
+              <Link
+                to={{
+                  pathname: 'showlist',
+                  state: { catSearch: showArr[0] }
+                }}
+                className={`${styles.homeCat} col-12`}
+              >
+                <h2>{showArr[0]}</h2>
+              </Link>
+              {showArr.map((show, j) => {
+                let homeItem = null;
+                if (j > 0) {
+                  homeItem = <HomeItem key={show.id} {...show} ind={j} />;
+                }
+                return homeItem;
+              })}
+            </div>
+          ))}
         </MMContainer>
       );
     }
@@ -125,7 +130,7 @@ const HomeItem = props => {
           <img src={modProps.image} alt={title} title={title} />
         </LazyLoad>
       </Link>
-      <div className="detail">
+      <div className="detail" key={id}>
         <Link
           to={{ pathname: modProps.link, state: { id, mediaType: 'movie' } }}
           aria-label={title}

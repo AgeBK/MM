@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Config from '../../config.json';
 import { pageTitle } from '../../utils';

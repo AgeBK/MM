@@ -112,6 +112,8 @@ class Show extends Component<Props, State> {
       // 2: similar movies
       // 3: cast/crew
 
+      console.log(this.state.data);
+
       // tv and movie fields
       const {
         backdrop_path: backdropPath,
