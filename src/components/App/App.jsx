@@ -19,6 +19,7 @@ import Actors from '../Actors/Actors';
 import Actor from '../Actor/Actor';
 // import Config from '../../config.json';
 import ErrorBoundry from '../ErrorBoundry/ErrorBoundry';
+import styles from './app.css';
 
 // const Show = Loadable({ loader: () => import('./Show/Show' /* webpackChunkName: "Show" */), loading: Loading, }); //magic comment /* webpackChunkName: xxx */
 // const ShowList = Loadable({ loader: () => import('./ShowList/ShowList'/* webpackChunkName: "ShowList" */), loading: Loading, });
@@ -63,7 +64,7 @@ class App extends Component<Props, State> {
     return (
       <Router>
         <ScrollToTop>
-          <div className="container-fluid">
+          <div className={`${styles.mainOuter} container-fluid`}>
             <Route path="*" render={props => <Header {...props} />} />
             <Loading />
             <ErrorBoundry>

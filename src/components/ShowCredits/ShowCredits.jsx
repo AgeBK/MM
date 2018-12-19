@@ -36,7 +36,7 @@ const ShowCredits = (props: Props) => {
     });
 
     // in preact i need to do this or no data gets returned??
-    return <div className="row">{actors}</div>;
+    return <div className="showCredits row">{actors}</div>;
   }
   return null;
 };
