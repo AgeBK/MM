@@ -26,9 +26,9 @@ class Info extends Component<Props> {
     const info = Config[data];
     return (
       <MMContainer>
-        {/* <div className={styles.information}>
+        <div className={styles.information}>
           <div dangerouslySetInnerHTML={{ __html: info }} />
-        </div> */}
+        </div>
         {/* <Test /> */}
       </MMContainer>
     );

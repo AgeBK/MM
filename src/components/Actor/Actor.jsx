@@ -98,7 +98,7 @@ class Actor extends Component<Props, State> {
       const image = navigator.onLine ? Config.imgURL + profile : Config.dj;
 
       return (
-        <div className="results centre">
+        <div className="results">
           <ActorInfo
             aka={aka}
             bDay={bDay}
@@ -126,7 +126,7 @@ const ActorInfo = props => {
   const { aka, bDay, bio, bYear, dDay, dYr, homepage, img, name, pob } = props;
 
   return (
-    <section className={styles.actor}>
+    <section className={`${styles.actor} centre`}>
       <h1>
         {name}
         {bYear ? (
@@ -269,6 +269,9 @@ const ActorImages = props => {
       </div>
     );
   });
+
+  // TODO: type in asdf here to generate errorBoundry
+  // TODO: looks crap if you only have 1 pic
 
   return (
     <section className="actorImgs row center">
