@@ -32,6 +32,8 @@ type Props = {
 };
 
 // http://localhost:8080/index.html?screen=login&noRedirect for page not found
+// TODO: if you come straight in on http://localhost:8080/showlist/TombRaider, nothing happens
+// TODO: data looks crap if Budget, Revenue are 0 - http://localhost:8080/showlist/Roma
 
 class Show extends Component<Props, State> {
   mediaType: string; // flow
@@ -105,18 +107,20 @@ class Show extends Component<Props, State> {
   }
 
   render() {
-    const reCurrency = new RegExp(Config.reCurrency, 'g');
+    // const reCurrency = new RegExp(Config.reCurrency, 'g');
     if (this.state.data.length) {
       // 3 arrays here
       // 1: show info
       // 2: similar movies
       // 3: cast/crew
 
+      console.log(this.state.data);
+
       // tv and movie fields
       const {
         backdrop_path: backdropPath,
         genres,
-        homepage,
+        // homepage,
         // original_language: orgLang,
         overview,
         poster_path: posterPath,

@@ -44,6 +44,7 @@ class Header extends Component<Props> {
 
   constructor(props) {
     super(props);
+    console.log(props);
 
     this.searchTerm = '';
     this.searched = '';
@@ -51,15 +52,10 @@ class Header extends Component<Props> {
   }
 
   componentDidMount() {
+    console.log(this);
     this.loaded = true;
     this.props.storeThis({ value: this }); // 1: trigger redux (only when component is mounted or errors) with storeThis action
   }
-
-  // shouldComponentUpdate() {
-  //   console.log('shouldComponentUpdate');
-  //   // TODO:
-  //   return true;
-  // }
 
   search = e => {
     if (

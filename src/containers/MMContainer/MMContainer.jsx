@@ -7,21 +7,19 @@ type Props = {
   children?: React.Node // children should be declared as a nullable type
 };
 
-const MMContainer = (props: Props) => {
-  return (
-    <div className="results mainOuter">
-      <div className="row">
-        <a className={styles.homeLink} href="/">
-          <div className={`${[styles.intro, styles.bgMain].join(' ')} col-12`}>
-            <h1>{Config.siteTitle}</h1>
-            <p>{Config.siteIntro}</p>
-          </div>
-        </a>
-        <hr />
-        {props.children}
-      </div>
+const MMContainer = (props: Props) => (
+  <div className="results mainOuter">
+    <div className="row">
+      <a className={styles.homeLink} href="/">
+        <div className={`${[styles.intro, styles.bgMain].join(' ')} col-12`}>
+          <h1>{Config.siteTitle}</h1>
+          <p>{Config.siteIntro}</p>
+        </div>
+      </a>
+      <hr />
+      {props.children}
     </div>
-  );
-};
+  </div>
+);
 
 export default MMContainer;
