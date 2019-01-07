@@ -101,14 +101,7 @@
     font-size: 26px;
   }
 }
-@media screen and (min-width: 576px) {
-  h1 {
-    font-size: 54px;
-  }
-  h3 {
-    font-size: 32px;
-  }
-}
+
 @media screen and (min-width: 768px) {
   .showRslts .show {
     background-size: cover;

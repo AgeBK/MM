@@ -1,10 +1,18 @@
+h2 {
+  margin-bottom: 20px;
+}
 .information {
   padding: 20px;
+  width: 100%;
 }
 .information p {
   color: #8e9ba5;
   margin-bottom: 10px;
 }
-h2 {
-  margin-bottom: 20px;
+.information > div > div {
+  text-align: center;
+}
+
+.errorBdry {
+  border: 1px solid red;
 }

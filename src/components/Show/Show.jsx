@@ -31,7 +31,6 @@ type Props = {
   }
 };
 
-// http://localhost:8080/index.html?screen=login&noRedirect for page not found
 // TODO: if you come straight in on http://localhost:8080/showlist/TombRaider, nothing happens
 // TODO: data looks crap if Budget, Revenue are 0 - http://localhost:8080/showlist/Roma
 
@@ -124,20 +123,15 @@ class Show extends Component<Props, State> {
         // original_language: orgLang,
         overview,
         poster_path: posterPath,
-        // production_companies: prodComp,
-        // status,
         vote_average: voteAvg,
         release_date: relDate,
         first_air_date: fDate,
-        // vote_count: voteCnt,
         title,
         name
       } = this.state.data[0];
-      // console.log(this.state.data[0]);
 
       const genreNames = getNamesStr(genres);
-      // const prodCompNames = getNamesStr(prodComp);
-      const dtYear = relDate ? relDate.split('-')[0] : fDate.split('-')[0]; // first_air_date
+          const dtYear = relDate ? relDate.split('-')[0] : fDate.split('-')[0]; // first_air_date
       // console.log(dtYear);
 
       const img = navigator.onLine

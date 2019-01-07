@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { storeThis } from '../../js/actions/index'; // import action storeThis
 import Config from '../../config.json';
@@ -99,14 +99,15 @@ let NavContent = (props: Props) => {
   // props contains redux results (stored this value)
   Object;
   const val = props.data.value;
+  // TODO: Link vs NavLink
 
   return (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
-          <a className="nav-link" href="/">
+          <NavLink className="nav-link" to="/">
             Home <span className="sr-only">(current)</span>
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item dropdown">
           <div
